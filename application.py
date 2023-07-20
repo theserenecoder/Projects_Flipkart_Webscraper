@@ -12,16 +12,16 @@ logging.basicConfig(filename = 'scrap.log',
                     level = logging.INFO, 
                     format = '%(name)s %(levelname)s %(message)s ')
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 #creating main landing page
-@app.route('/',methods = ['GET'])
+@application.route('/',methods = ['GET'])
 @cross_origin()
 def homepage():
     return render_template("index.html")
 
 #creating /review page
-@app.route('/review', methods = ['POST','GET'])
+@application.route('/review', methods = ['POST','GET'])
 @cross_origin()
 def index():
     if request.method=='POST':
@@ -137,4 +137,4 @@ def index():
         return render_template('index.html')
     
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug = True)
+    application.run(host='0.0.0.0')
