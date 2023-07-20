@@ -13,15 +13,16 @@ logging.basicConfig(filename = 'scrap.log',
                     format = '%(name)s %(levelname)s %(message)s ')
 
 application = Flask(__name__)
+app = application
 
 #creating main landing page
-@application.route('/',methods = ['GET'])
+@app.route('/',methods = ['GET'])
 @cross_origin()
 def homepage():
     return render_template("index.html")
 
 #creating /review page
-@application.route('/review', methods = ['POST','GET'])
+@app.route('/review', methods = ['POST','GET'])
 @cross_origin()
 def index():
     if request.method=='POST':
@@ -131,10 +132,10 @@ def index():
             return render_template('result.html',reviews = reviews[0:(len(reviews)-1)])
         
         except Exception as e:
-            logging.error(e)
+            logging.error('The exception message is : ', e)
             return 'something is wrong'
     else:
         return render_template('index.html')
     
 if __name__ == '__main__':
-    application.run(host='0.0.0.0')
+    app.run(host='127.0.0.1',port=8000)
