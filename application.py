@@ -133,7 +133,7 @@ def index():
         
         except Exception as e:
             logging.error('The exception message is : ', e)
-            return 'something is wrong'
+            return 'something is wrong {}'.format(e)
     else:
         return render_template('index.html')
     
